@@ -1,0 +1,1112 @@
+/**
+ * Comic Theme Styles
+ */
+
+/* Theme Variables */
+:root {
+    /* Light Theme (Default) */
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --card-bg: #fff;
+    --card-border: rgba(0, 0, 0, 0.05);
+    --header-bg: linear-gradient(135deg, #343a40 0%, #212529 100%);
+    --footer-bg: linear-gradient(135deg, #343a40 0%, #212529 100%);
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --link-color: #007bff;
+    --link-hover-color: #0056b3;
+    --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    --hover-bg: rgba(0, 123, 255, 0.05);
+    --input-bg: #fff;
+    --input-border: #ced4da;
+    --hero-bg: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    --breadcrumb-color: #6c757d;
+    --theme-transition: all 0.3s ease;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg-color: #222;
+    --text-color: #eee;
+    --card-bg: #333;
+    --card-border: rgba(255, 255, 255, 0.05);
+    --header-bg: linear-gradient(135deg, #121212 0%, #000 100%);
+    --footer-bg: linear-gradient(135deg, #121212 0%, #000 100%);
+    --primary-color: #0d6efd;
+    --secondary-color: #adb5bd;
+    --link-color: #0d6efd;
+    --link-hover-color: #0a58ca;
+    --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    --hover-bg: rgba(13, 110, 253, 0.2);
+    --input-bg: #444;
+    --input-border: #555;
+    --hero-bg: linear-gradient(135deg, #4a148c 0%, #1a237e 100%);
+    --breadcrumb-color: #adb5bd;
+}
+
+/* General Styles */
+body {
+    background-color: var(--bg-color);
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: var(--theme-transition);
+}
+
+a {
+    text-decoration: none;
+    color: var(--link-color);
+    transition: var(--theme-transition);
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: none;
+}
+
+.site-content {
+    min-height: 70vh;
+    padding-bottom: 3rem;
+}
+
+/* Header Styles */
+.site-header {
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    background: var(--header-bg);
+    transition: var(--theme-transition);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+    padding: 1rem 1rem;
+    position: relative;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover:after,
+.navbar-dark .navbar-nav .active .nav-link:after {
+    width: 70%;
+}
+
+.navbar-dark .navbar-nav .active .nav-link {
+    color: #fff;
+}
+
+.comic-hero {
+    background: var(--hero-bg);
+    color: #fff;
+    padding: 5rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.comic-hero:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon fill="rgba(255,255,255,0.05)" points="0,100 100,0 100,100"/></svg>');
+    background-size: cover;
+}
+
+.comic-hero h1 {
+    font-weight: 800;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.comic-hero .lead {
+    font-size: 1.3rem;
+    max-width: 70%;
+    margin: 0 auto;
+    position: relative;
+    opacity: 0.9;
+}
+
+/* Theme Switch */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.theme-switch {
+    display: inline-block;
+    position: relative;
+    height: 24px;
+    width: 48px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+.slider .icon-moon,
+.slider .icon-sun {
+    position: absolute;
+    top: 5px;
+    font-size: 12px;
+    color: #fff;
+}
+
+.slider .icon-moon {
+    right: 6px;
+}
+
+.slider .icon-sun {
+    left: 6px;
+}
+
+/* Comic Card Styles */
+.comic-card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    border: none;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    background-color: var(--card-bg);
+}
+
+.comic-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.comic-card .card-img-link {
+    overflow: hidden;
+    position: relative;
+    display: block;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.comic-cover {
+    height: 350px;
+    object-fit: cover;
+    width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.comic-card:hover .comic-cover {
+    transform: scale(1.05);
+}
+
+.comic-card .card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+}
+
+.comic-card .card-title a {
+    color: var(--text-color);
+}
+
+.comic-card .card-text {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+.comic-card .latest-update {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+}
+
+.comic-card .card-footer {
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--card-border);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* Badge overlays for comic cards */
+.comic-card .status-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    border-radius: 30px;
+    padding: 5px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.comic-card .badge-completed {
+    background: #28a745;
+    color: white;
+}
+
+.comic-card .badge-ongoing {
+    background: #007bff;
+    color: white;
+}
+
+.comic-card .badge-hot {
+    background: #dc3545;
+    color: white;
+}
+
+.comic-card .badge-new {
+    background: #6f42c1;
+    color: white;
+}
+
+/* Sidebar Styles */
+.sidebar-card {
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    border: none;
+    background-color: var(--card-bg);
+}
+
+.sidebar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-card .card-header {
+    background: var(--primary-color);
+    color: white;
+    border-bottom: none;
+    padding: 15px 20px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    position: relative;
+}
+
+.sidebar-card .card-header:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    width: 50px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-card .card-body {
+    padding: 20px;
+    background-color: var(--card-bg);
+}
+
+.sidebar-card .list-group-item {
+    background: transparent;
+    border-color: var(--card-border);
+    padding: 12px 20px;
+    transition: all 0.2s ease;
+}
+
+.sidebar-card .list-group-item:hover {
+    background: var(--hover-bg);
+    transform: translateX(5px);
+}
+
+.category-list li a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    color: var(--text-color);
+}
+
+.category-list li a:hover {
+    background: var(--hover-bg);
+    transform: translateX(5px);
+    color: var(--primary-color);
+}
+
+.category-list li i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+    font-size: 1.1em;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.category-list li a:hover i {
+    transform: translateX(3px);
+}
+
+.popular-comics .list-group-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid var(--card-border);
+    background-color: var(--card-bg);
+}
+
+.popular-comics .list-group-item:last-child {
+    border-bottom: none;
+}
+
+.popular-comic-thumb {
+    width: 70px;
+    height: 90px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.popular-comics .list-group-item:hover .popular-comic-thumb {
+    transform: scale(1.05);
+}
+
+.popular-comic-details {
+    margin-left: 15px;
+    flex: 1;
+}
+
+.popular-comic-details h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    line-height: 1.3;
+}
+
+.popular-comic-details h4 a {
+    color: var(--text-color);
+}
+
+.popular-comic-details .stats {
+    font-size: 0.85rem;
+    display: flex;
+    gap: 10px;
+    color: var(--secondary-color);
+}
+
+.popular-comic-details .stats span {
+    display: flex;
+    align-items: center;
+}
+
+.popular-comic-details .stats i {
+    margin-right: 4px;
+    color: var(--primary-color);
+}
+
+.sidebar-card .btn {
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.sidebar-card .widget-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--text-color);
+}
+
+/* Comic Detail Page */
+.comic-detail {
+    margin-bottom: 3rem;
+}
+
+.comic-detail .comic-cover {
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.comic-detail .card-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    color: var(--text-color);
+}
+
+.comic-description {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.comic-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 1.5rem;
+}
+
+.comic-stats .badge {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 30px;
+}
+
+.chapter-table {
+    color: var(--text-color);
+}
+
+.chapter-table th, .chapter-table td {
+    padding: 1rem 1.25rem;
+    vertical-align: middle;
+    border-color: var(--card-border);
+}
+
+.chapter-table a {
+    font-weight: 600;
+    color: var(--text-color);
+    transition: color 0.2s ease;
+}
+
+.chapter-table a:hover {
+    color: var(--primary-color);
+}
+
+.chapter-table tr {
+    transition: background-color 0.2s ease;
+}
+
+.chapter-table tr:hover {
+    background-color: var(--hover-bg);
+}
+
+/* Comic Chapter Page */
+.comic-chapter {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.comic-chapter .entry-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.comic-chapter .entry-meta {
+    text-align: center;
+    color: var(--secondary-color);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+.chapter-navigation {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.comic-content {
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+}
+
+/* Comic Images Shortcode Styles */
+.comic-container {
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+}
+
+.comic-image {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.comic-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.comic-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-top: 20px;
+    position: sticky;
+    bottom: 20px;
+    background-color: var(--card-bg);
+    border-radius: 50px;
+    box-shadow: var(--card-shadow);
+    z-index: 100;
+}
+
+.comic-pagination {
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.fullscreen-btn {
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Comic Info Shortcode Styles */
+.comic-info {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+}
+
+.comic-info .comic-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    color: var(--text-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 0.8rem;
+    position: relative;
+}
+
+.comic-details {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.comic-details > div {
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+}
+
+.comic-summary p {
+    margin-top: 1rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+
+/* Comic Chapters Shortcode Styles */
+.comic-chapters {
+    margin: 2rem 0;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+}
+
+.comic-chapters h3 {
+    margin-bottom: 1.2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 0.8rem;
+}
+
+.comic-chapters .list-group-item {
+    border: none;
+    border-bottom: 1px solid var(--card-border);
+    padding: 1rem 1.25rem;
+    transition: all 0.2s ease;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.comic-chapters .list-group-item:hover {
+    background-color: var(--hover-bg);
+    transform: translateX(5px);
+}
+
+.comic-chapters .list-group-item:last-child {
+    border-bottom: none;
+}
+
+/* Comic List Shortcode */
+.comic-list {
+    margin: 2rem 0;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.breadcrumb-item, .breadcrumb-item a {
+    color: var(--breadcrumb-color);
+}
+
+.breadcrumb-item.active {
+    color: var(--text-color);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+    color: var(--breadcrumb-color);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--link-hover-color);
+    border-color: var(--link-hover-color);
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+/* Card styles */
+.card {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+}
+
+/* Form controls */
+.form-control {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-color);
+}
+
+.form-control:focus {
+    background-color: var(--input-bg);
+    border-color: var(--primary-color);
+    color: var(--text-color);
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Footer Styles */
+.site-footer {
+    background: var(--footer-bg);
+    color: #fff;
+    padding: 4rem 0 2rem;
+    position: relative;
+}
+
+.footer-heading {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.8rem;
+}
+
+.footer-heading:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.7rem;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+    display: block;
+    position: relative;
+    padding-left: 15px;
+}
+
+.footer-links a:before {
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    padding-left: 20px;
+}
+
+.footer-links a:hover:before {
+    transform: translateX(3px);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    transform: translateY(-5px);
+}
+
+.site-info {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    width: 50px;
+    height: 50px;
+    line-height: 46px;
+    border-radius: 50%;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.back-to-top:hover {
+    opacity: 1;
+    transform: translateY(-5px);
+}
+
+/* Filter and Search */
+.comic-filters {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+}
+
+.genre-filter {
+    display: inline-block;
+    margin: 0.3rem;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.genre-filter:hover, .genre-filter.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 123, 255, 0.2);
+}
+
+#comic-search {
+    border-radius: 30px;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--input-border);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+#comic-search:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 3px 10px rgba(0, 123, 255, 0.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 1199.98px) {
+    .comic-cover {
+        height: 300px;
+    }
+    
+    .comic-hero h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .comic-cover {
+        height: 280px;
+    }
+    
+    .comic-hero {
+        padding: 4rem 0;
+    }
+    
+    .comic-hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .comic-hero .lead {
+        max-width: 90%;
+        font-size: 1.1rem;
+    }
+    
+    .chapter-navigation .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .comic-cover {
+        height: 320px;
+    }
+    
+    .comic-hero {
+        padding: 3rem 0;
+    }
+    
+    .comic-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .comic-chapter .entry-title {
+        font-size: 1.6rem;
+    }
+    
+    .comic-detail .card-title {
+        font-size: 1.6rem;
+    }
+    
+    .chapter-navigation .btn span {
+        display: none;
+    }
+    
+    .chapter-navigation .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .comic-content {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .comic-cover {
+        height: 400px;
+    }
+    
+    .comic-hero {
+        padding: 2.5rem 0;
+    }
+    
+    .comic-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .comic-hero .lead {
+        max-width: 100%;
+        font-size: 1rem;
+    }
+    
+    .comic-chapter .entry-title {
+        font-size: 1.4rem;
+    }
+    
+    .comic-container {
+        padding: 0.7rem;
+    }
+    
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        line-height: 36px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* Fix text colors */
+.card-text, .comic-card .card-text, .text-muted, .comic-card .latest-update {
+    color: var(--text-color) !important;
+}
+
+.sidebar-card .popular-comic-details .stats {
+    color: var(--text-color) !important;
+}
+
+.comic-card .card-footer {
+    background-color: var(--card-bg) !important;
+}
+
+/* Fix date text in latest updates */
+.comic-card .card-text small.text-muted,
+.comic-card .card-text .latest-update,
+.comic-card .card-text small.text-muted i,
+time, .posted-on {
+    color: var(--text-color) !important;
+    opacity: 0.8;
+}
+
+/* Style category page title */
+.page-header .page-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    text-align: left;
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.category .page-header {
+    margin-bottom: 2rem;
+}
+
+/* Style comic cards for category page */
+.comic-directory {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.comic-directory .comic-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.comic-directory .comic-card .card-body {
+    flex: 1;
+}
+
+.comic-directory .comic-card .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+}
+
+.comic-directory .comic-card .comic-cover {
+    height: 320px;
+}
+
+/* Button styling */
+.btn-primary, .btn-outline-primary {
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.btn-outline-primary:hover {
+    color: white !important;
+}
